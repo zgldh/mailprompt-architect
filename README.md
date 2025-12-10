@@ -1,8 +1,6 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="./hero.jpeg" />
-</div>
-
 # MailPrompt Architect
+![Hero Image](./hero.jpeg)  
+
 
 A desktop-class application to generate structured LLM prompts for professional email writing.
 
@@ -26,7 +24,7 @@ This tool helps you craft effective prompts for large language models to generat
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:zgldh/mailprompt-architect.git
    ```
 
 2. Navigate to the project directory:
@@ -63,6 +61,10 @@ The built application will be available in the `release/` directory.
 5. The AI-generated prompt will appear in the right panel
 6. Copy the prompt and use it with your favorite AI assistant
 
+
+![Screenshot](./screenshot.png)  
+
+
 ## Technical Details
 
 - Built with React and TypeScript
@@ -71,6 +73,10 @@ The built application will be available in the `release/` directory.
 - Responsive design that works on various screen sizes
 - Local storage for saving preferences and input history
 - No data leaves your computer - all processing happens locally except for AI API calls
+
+## Acknowledgements
+
+This project was inspired by [https://github.com/glebkudr/shotgun_code](https://github.com/glebkudr/shotgun_code).
 
 ## Contributing
 
