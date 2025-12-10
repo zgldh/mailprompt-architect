@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A desktop-class application to generate structured LLM prompts for professional email writing.",
   "main": "main.js",
-  "author": "User",
+  "author": "zgldh",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
