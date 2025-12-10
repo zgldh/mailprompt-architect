@@ -1,5 +1,5 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<img width="1200" height="475" alt="GHBanner" src="./hero.jpeg" />
 </div>
 
 # MailPrompt Architect
@@ -8,7 +8,6 @@ A desktop-class application to generate structured LLM prompts for professional 
 
 This tool helps you craft effective prompts for large language models to generate professional emails with the perfect tone and style for any situation.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1qeTQyXHWF3nsOj3xcx9yoyn2WjTQ6ztr
 
 ## Features
 
