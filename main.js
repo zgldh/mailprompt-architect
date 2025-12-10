@@ -1,6 +1,9 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+// Check if running in dev mode (passed via flag in package.json)
+const isDev = process.argv.includes('--dev');
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1280,
@@ -17,10 +20,16 @@ function createWindow() {
     }
   });
 
-  // In development, you might want to load 'http://localhost:5173'
-  // But for the packaged app, we load the compiled HTML file.
-  // The 'dist' folder is created by 'npm run build'
-  mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
+  if (isDev) {
+    // In development, load the Vite dev server
+    console.log('Running in development mode: Loading http://localhost:5173');
+    mainWindow.loadURL('http://localhost:5173');
+    // Open DevTools automatically in dev mode for easier debugging
+    mainWindow.webContents.openDevTools();
+  } else {
+    // In production, load the built static file
+    mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
+  }
 }
 
 app.whenReady().then(() => {

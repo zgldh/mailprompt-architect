@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "electron .",
+    "start": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron . --dev\"",
+    "prod-preview": "npm run build && electron .",
     "dist": "npm run build && electron-builder"
   },
   "build": {
@@ -43,9 +44,11 @@
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
     "electron": "^29.0.0",
     "electron-builder": "^24.13.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "wait-on": "^7.2.0"
   }
 }
