@@ -1,0 +1,5 @@
+{
+  "name": "MailPrompt Architect",
+  "description": "A desktop-class application to generate structured LLM prompts for professional email writing.",
+  "requestFramePermissions": []
+}
