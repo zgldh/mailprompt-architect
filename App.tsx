@@ -143,6 +143,24 @@ export default function App() {
     }
   };
 
+  // Simple token estimation function
+  const estimateTokens = (text: string): number => {
+    if (!text) return 0;
+    
+    // Based on research, 1 token ≈ 4 characters for English text
+    // For mixed languages like English + Chinese, we'll use a blended approach
+    const charCount = text.length;
+    const whitespaceCount = (text.match(/\s/g) || []).length;
+    
+    // Estimate token count:
+    // - Non-whitespace characters: 1 token per ~4 chars 
+    // - Whitespace: 1 token per 2 whitespaces (as they often separate tokens)
+    const nonSpaceChars = charCount - whitespaceCount;
+    const estimatedTokens = Math.ceil(nonSpaceChars / 4) + Math.floor(whitespaceCount / 2);
+    
+    return estimatedTokens;
+  };
+
   const handleAddStyle = (newStyle: EmailStyle) => {
     setStyles(prev => [...prev, newStyle]);
     setSelectedStyleId(newStyle.id);
@@ -243,22 +261,30 @@ export default function App() {
             <span className="font-semibold text-sm uppercase tracking-wide">{t.generatedLabel}</span>
           </div>
           
-          <button
-            onClick={handleCopy}
-            disabled={!generatedPrompt}
-            className={`
-              flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 shadow-sm
-              ${!generatedPrompt 
-                ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-                : isCopied 
-                  ? 'bg-green-100 text-green-700 ring-2 ring-green-500 ring-offset-1' 
-                  : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0'
-              }
-            `}
-          >
-            {isCopied ? <CheckCheck size={16} /> : <Copy size={16} />}
-            {isCopied ? t.copied : t.copy}
-          </button>
+          <div className="flex items-center gap-3">
+            {generatedPrompt && (
+              <div className="text-sm text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                ~{estimateTokens(generatedPrompt)} tokens
+              </div>
+            )}
+            
+            <button
+              onClick={handleCopy}
+              disabled={!generatedPrompt}
+              className={`
+                flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 shadow-sm
+                ${!generatedPrompt 
+                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+                  : isCopied 
+                    ? 'bg-green-100 text-green-700 ring-2 ring-green-500 ring-offset-1' 
+                    : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0'
+                }
+              `}
+            >
+              {isCopied ? <CheckCheck size={16} /> : <Copy size={16} />}
+              {isCopied ? t.copied : t.copy}
+            </button>
+          </div>
         </div>
 
         {/* Output Area */}
