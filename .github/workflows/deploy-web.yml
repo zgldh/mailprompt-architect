@@ -35,7 +35,7 @@ jobs:
           personal_token: ${{ secrets.GH_PAT }}
           external_repository: zgldh/zgldh.github.io
           publish_dir: ./dist
-          publish_branch: main
+          publish_branch: master
           destination_dir: 'mailprompt-architect'
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
