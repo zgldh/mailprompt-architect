@@ -1,0 +1,36 @@
+name: Deploy Web
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build web application
+        run: npm run build -- --config vite.config.web.ts
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GH_PAT }}
+          external_repository: zgldh/zgldh.github.io
+          publish_dir: ./dist
+          publish_branch: main
+          destination_dir: 'mailprompt-architect'
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: Deploy web build for mailprompt-architect from ${{ github.sha }}
