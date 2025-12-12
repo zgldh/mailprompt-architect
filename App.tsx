@@ -44,9 +44,8 @@ export default function App() {
 
   // 2. Load Styles & State for current language
   useEffect(() => {
-    const langSuffix = `_${language}`;
-    const savedStylesKey = `mailprompt_styles${langSuffix}`;
-    const savedStateKey = `mailprompt_state${langSuffix}`;
+    const savedStylesKey = `mailprompt_styles`;
+    const savedStateKey = `mailprompt_state`;
 
     // Load Styles
     const savedStyles = localStorage.getItem(savedStylesKey);
@@ -84,9 +83,8 @@ export default function App() {
 
   // 3. Save State on Change
   useEffect(() => {
-    const langSuffix = `_${language}`;
-    const savedStylesKey = `mailprompt_styles${langSuffix}`;
-    const savedStateKey = `mailprompt_state${langSuffix}`;
+    const savedStylesKey = `mailprompt_styles`;
+    const savedStateKey = `mailprompt_state`;
 
     localStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
     localStorage.setItem(savedStylesKey, JSON.stringify(styles));
