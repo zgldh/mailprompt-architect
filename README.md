@@ -7,6 +7,10 @@ A desktop-class application to generate structured LLM prompts for professional 
 This tool helps you craft effective prompts for large language models to generate professional emails with the perfect tone and style for any situation.
 
 
+## Online Demo
+
+Try the online demo at: [https://zgldh.github.io/mailprompt-architect/](https://zgldh.github.io/mailprompt-architect/)
+
 ## Features
 
 - **Multiple Email Styles**: Choose from 5 preset tones including Professional & Formal, Friendly & Casual, Direct & Concise, Persuasive & Sales, and Apathetic & Empathetic
