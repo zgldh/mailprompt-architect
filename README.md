@@ -16,6 +16,7 @@ This tool helps you craft effective prompts for large language models to generat
 - **Intent Capture**: Clearly define your intent before generating the prompt
 - **Auto-save**: All inputs are automatically saved to local storage
 - **Easy Copy**: One-click copy of generated prompts to clipboard
+- **Token Estimation**: Estimate token count of generated prompts before copying
 - **Cross-platform**: Works on Windows, macOS, and Linux as a desktop application
 
 ## Run Locally
