@@ -31,4 +31,6 @@ export interface Translation {
   readyDesc: string;
   autoSave: string;
   deleteStyle: string;
+  confirmDelete: string;
+  confirmCancel: string;
 }

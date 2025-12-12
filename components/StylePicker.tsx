@@ -22,6 +22,7 @@ export const StylePicker: React.FC<StylePickerProps> = ({
   const [isAdding, setIsAdding] = useState(false);
   const [newStyleName, setNewStyleName] = useState('');
   const [newStylePrompt, setNewStylePrompt] = useState('');
+  const [styleToDelete, setStyleToDelete] = useState<string | null>(null);
 
   const handleAddSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +36,22 @@ export const StylePicker: React.FC<StylePickerProps> = ({
     setNewStyleName('');
     setNewStylePrompt('');
     setIsAdding(false);
+  };
+
+  const confirmDelete = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setStyleToDelete(id);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (styleToDelete) {
+      onDeleteStyle(styleToDelete);
+      setStyleToDelete(null);
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setStyleToDelete(null);
   };
 
   return (
@@ -103,16 +120,35 @@ export const StylePicker: React.FC<StylePickerProps> = ({
               </p>
               
               {isCustom && !isSelected && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDeleteStyle(style.id);
-                  }}
-                  className="absolute top-1 right-1 p-1 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                  title={labels.deleteStyle}
-                >
-                  <X size={12} />
-                </button>
+                <>
+                  <button
+                    onClick={(e) => confirmDelete(style.id, e)}
+                    className="absolute top-1 right-1 p-1 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    title={labels.deleteStyle}
+                  >
+                    <X size={12} />
+                  </button>
+                  
+                  {styleToDelete === style.id && (
+                    <div 
+                      className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center gap-2 z-10"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        onClick={handleDeleteConfirm}
+                        className="px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 transition-colors"
+                      >
+                        {labels.confirmDelete}
+                      </button>
+                      <button
+                        onClick={handleDeleteCancel}
+                        className="px-2 py-1 bg-gray-300 text-gray-700 text-xs rounded hover:bg-gray-400 transition-colors"
+                      >
+                        {labels.confirmCancel}
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           );

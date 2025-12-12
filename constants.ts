@@ -76,7 +76,9 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     readyTitle: "Ready to generate",
     readyDesc: "Fill in the details on the left to see the magic.",
     autoSave: "Inputs auto-save to local storage",
-    deleteStyle: "Delete custom style"
+    deleteStyle: "Delete custom style",
+    confirmDelete: "Delete",
+    confirmCancel: "Cancel"
   },
   zh: {
     appTitle: "邮件提示词工匠",
@@ -96,7 +98,9 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     readyTitle: "准备生成",
     readyDesc: "在左侧填写详细信息以生成提示词。",
     autoSave: "输入内容会自动保存",
-    deleteStyle: "删除自定义风格"
+    deleteStyle: "删除自定义风格",
+    confirmDelete: "删除",
+    confirmCancel: "取消"
   }
 };
 

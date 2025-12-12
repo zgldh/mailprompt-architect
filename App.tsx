@@ -44,18 +44,21 @@ export default function App() {
 
   // 2. Load Styles & State for current language
   useEffect(() => {
-    const savedStylesKey = `mailprompt_styles`;
+    const savedStylesKey = `mailprompt_styles_custom`;
     const savedStateKey = `mailprompt_state`;
 
-    // Load Styles
-    const savedStyles = localStorage.getItem(savedStylesKey);
+    // Start with default styles for current language
     let currentStyles = STYLES_BY_LANG[language];
     
+    // Load custom styles that should be available in all languages
+    const savedStyles = localStorage.getItem(savedStylesKey);
     if (savedStyles) {
       try {
-        currentStyles = JSON.parse(savedStyles);
+        const customStyles = JSON.parse(savedStyles);
+        // Append custom styles to default styles
+        currentStyles = [...STYLES_BY_LANG[language], ...customStyles];
       } catch (e) {
-        console.error("Failed to parse styles", e);
+        console.error("Failed to parse custom styles", e);
       }
     }
     setStyles(currentStyles);
@@ -83,11 +86,17 @@ export default function App() {
 
   // 3. Save State on Change
   useEffect(() => {
-    const savedStylesKey = `mailprompt_styles`;
+    const savedStylesKey = `mailprompt_styles_custom`;
     const savedStateKey = `mailprompt_state`;
 
     localStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
-    localStorage.setItem(savedStylesKey, JSON.stringify(styles));
+    // Only save custom styles (those with numeric IDs)
+    const customStyles = styles.filter(s => !isNaN(Number(s.id)));
+    if (customStyles.length > 0) {
+      localStorage.setItem(savedStylesKey, JSON.stringify(customStyles));
+    } else {
+      localStorage.removeItem(savedStylesKey);
+    }
     localStorage.setItem(savedStateKey, JSON.stringify({
       history: emailHistory,
       intent,
