@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Copy, CheckCheck, History, PenTool, Sparkles, Languages } from 'lucide-react';
+import { Copy, CheckCheck, History, PenTool, Sparkles, Languages, Github } from 'lucide-react';
 import { STYLES_BY_LANG, TRANSLATIONS, PROMPT_TEMPLATES, STORAGE_KEYS } from './constants';
 import { EmailStyle, Language } from './types';
 import { TextAreaField } from './components/TextAreaField';
@@ -205,14 +205,26 @@ export default function App() {
             <h1 className="font-bold text-lg text-slate-800 tracking-tight">{t.appTitle}</h1>
           </div>
           
-          <button 
-            onClick={toggleLanguage}
-            className="flex items-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200 text-slate-600 text-xs font-bold uppercase transition-colors"
-            title="Switch Language"
-          >
-            <Languages size={14} />
-            {language === 'en' ? 'EN' : '中文'}
-          </button>
+          <div className="flex items-center gap-2">
+            <a 
+              href="https://github.com/zgldh/mailprompt-architect" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200 text-slate-600 text-xs font-bold uppercase transition-colors"
+              title="View on GitHub"
+            >
+              <Github size={14} />
+            </a>
+            
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-slate-200 text-slate-600 text-xs font-bold uppercase transition-colors"
+              title="Switch Language"
+            >
+              <Languages size={14} />
+              {language === 'en' ? 'EN' : '中文'}
+            </button>
+          </div>
         </div>
 
         {/* Scrollable Form Area */}
